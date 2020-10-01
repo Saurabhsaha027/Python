@@ -1,44 +1,40 @@
-# import random module 
-import random 
+# import random module to generate random num. and import tkinter for creating gui app.
+import random
+from tkinter import *
+from tkinter import ttk
+import turtle
 
-# Print multiline instruction 
-# performstring concatenation of string 
-print("Winning Rules of the Rock paper scissor game as follows: \n"
-								+"Rock vs paper->paper wins \n"
-								+ "Rock vs scissor->Rock wins \n"
-								+"paper vs scissor->scissor wins \n") 
-
-while True: 
-	print("Enter choice \n 1. Rock \n 2. paper \n 3. scissor \n") 
-	
-	# take the input from user 
-	choice = int(input("User turn: ")) 
-
-	# OR is the short-circuit operator 
-	# if any one of the condition is true 
-	# then it return True value 
-	
-	# looping until user enter invalid input 
-	while choice > 3 or choice < 1: 
-		choice = int(input("enter valid input: ")) 
-		
-
-	# initialize value of choice_name variable 
-	# corresponding to the choice value 
-	if choice == 1: 
-		choice_name = 'Rock'
-	elif choice == 2: 
-		choice_name = 'paper'
-	else: 
-		choice_name = 'scissor'
-		
-	# print user choice 
-	print("user choice is: " + choice_name) 
-	print("\nNow its computer turn.......") 
-
-	# Computer chooses randomly any number 
-	# among 1 , 2 and 3. Using randint method 
-	# of random module 
+#creating window of game
+root = Tk()
+root.title("Rock Paper Scissors Game")
+root.maxsize(700,600)
+root.config(bg="steelblue")
+frame = Frame(root,width=600,height=380,bg="black")
+frame.grid(row=0, column=0, padx=5, pady=5)
+canvas=Canvas(root,width=600,height=200,bg="white")
+canvas.grid(row=1, column=0, padx=5, pady=5)
+turtle=turtle.RawTurtle(canvas)
+turtle.ht()
+turtle.penup()
+turtle.goto(15,20)
+turtle.pendown()
+turtle.color("orange")
+turtle.write("Rules:", align="center", font=("Arial", 13, "italic","bold"))
+turtle.penup()
+turtle.penup()
+turtle.goto(30,-20)
+turtle.pendown()
+turtle.color("green")
+turtle.write("Rock vs paper->paper wins, Rock vs scissor->Rock wins", align="center", font=("Arial", 13, "italic","bold"))
+turtle.penup()
+turtle.goto(0,-40)
+turtle.pendown()
+turtle.write(", paper vs scissor->scissor wins", align="center", font=("Arial", 13, "italic","bold"))
+def Rock():
+	turtle.clear()
+	turtle.color("steelblue")
+	choice=1
+	choice_name='Rock'
 	comp_choice = random.randint(1, 3) 
 	
 	# looping until comp_choice value 
@@ -47,46 +43,125 @@ while True:
 		comp_choice = random.randint(1, 3) 
 
 	# initialize value of comp_choice_name 
-	# variable corresponding to the choice value 
-	if comp_choice == 1: 
-		comp_choice_name = 'Rock'
-	elif comp_choice == 2: 
+	# variable corresponding to the choice value
+	if comp_choice == 2:
 		comp_choice_name = 'paper'
 	else: 
 		comp_choice_name = 'scissor'
-		
-	print("Computer choice is: " + comp_choice_name) 
-
-	print(choice_name + " V/s " + comp_choice_name) 
-
-	# condition for winning 
+	turtle.penup()
+	turtle.goto(30, -30)
+	turtle.pendown()
+	# condition for winning
 	if((choice == 1 and comp_choice == 2) or
-	(choice == 2 and comp_choice ==1 )): 
-		print("paper wins => ", end = "") 
+	(choice == 2 and comp_choice ==1 )):
+		turtle.write("paper win", align="center", font=("Arial", 13, "italic","bold"))
 		result = "paper"
-		
+
 	elif((choice == 1 and comp_choice == 3) or
-		(choice == 3 and comp_choice == 1)): 
-		print("Rock wins =>", end = "") 
+		(choice == 3 and comp_choice == 1)):
+		turtle.write("rock win", align="center", font=("Arial", 13, "italic", "bold"))
 		result = "Rock"
-	else: 
-		print("scissor wins =>", end = "") 
+	else:
+		turtle.write("scissor win", align="center", font=("Arial", 13, "italic","bold"))
 		result = "scissor"
+	turtle.penup()
+	turtle.goto(0, -65)
+	turtle.pendown()
+	# Printing either user or computer wins
+	if result == choice_name:
+		turtle.write("<== User wins ==>", align="center", font=("Arial", 13, "italic","bold"))
+	else:
+		turtle.write("<== Computer wins ==>", align="center", font=("Arial", 13, "italic","bold"))
 
-	# Printing either user or computer wins 
-	if result == choice_name: 
-		print("<== User wins ==>") 
-	else: 
-		print("<== Computer wins ==>") 
-		
-	print("Do you want to play again? (Y/N)") 
-	ans = input() 
+
+def Scissor():
+	turtle.color("steelblue")
+	turtle.clear()
+	choice = 3
+	choice_name = 'scissor'
+	comp_choice = random.randint(1, 3)
+
+	# looping until comp_choice value
+	# is equal to the choice value
+	while comp_choice == choice:
+		comp_choice = random.randint(1, 3)
+
+	# initialize value of comp_choice_name
+	# variable corresponding to the choice value
+	if comp_choice == 2:
+		comp_choice_name = 'paper'
+	else:
+		comp_choice_name = 'Rock'
+	turtle.penup()
+	turtle.goto(30, -30)
+	turtle.pendown()
+	# condition for winning
+	if ((choice == 1 and comp_choice == 2) or
+			(choice == 2 and comp_choice == 1)):
+		turtle.write("paper win", align="center", font=("Arial", 13, "italic", "bold"))
+		result = "paper"
+
+	elif ((choice == 1 and comp_choice == 3) or
+		  (choice == 3 and comp_choice == 1)):
+		turtle.write("rock win", align="center", font=("Arial", 13, "italic", "bold"))
+		result = "Rock"
+	else:
+		turtle.write("scissor win", align="center", font=("Arial", 13, "italic", "bold"))
+		result = "scissor"
+	turtle.penup()
+	turtle.goto(0, -65)
+	turtle.pendown()
+	if result == choice_name:
+	    turtle.write("<== User wins ==>", align="center", font=("Arial", 13, "italic", "bold"))
+	else:
+	    turtle.write("<== Computer wins ==>", align="center", font=("Arial", 13, "italic", "bold"))
 
 
-	# if user input n or N then condition is True 
-	if ans == 'n' or ans == 'N': 
-		break
-	
-# after coming out of the while loop 
-# we print thanks for playing 
-print("\nThanks for playing") 
+def Paper():
+	turtle.color("steelblue")
+	turtle.clear()
+	choice = 2
+	choice_name = 'paper'
+	comp_choice = random.randint(1, 3)
+
+	# looping until comp_choice value
+	# is equal to the choice value
+	while comp_choice == choice:
+		comp_choice = random.randint(1, 3)
+
+	# initialize value of comp_choice_name
+	# variable corresponding to the choice value
+	if comp_choice == 1:
+		comp_choice_name = 'Rock'
+	else:
+		comp_choice_name = 'scissor'
+
+	# condition for winning
+	turtle.penup()
+	turtle.goto(30, -30)
+	turtle.pendown()
+	# condition for winning
+	if ((choice == 1 and comp_choice == 2) or
+			(choice == 2 and comp_choice == 1)):
+		turtle.write("paper win", align="center", font=("Arial", 13, "italic", "bold"))
+		result = "paper"
+
+	elif ((choice == 1 and comp_choice == 3) or
+		  (choice == 3 and comp_choice == 1)):
+		turtle.write("rock win", align="center", font=("Arial", 13, "italic", "bold"))
+		result = "Rock"
+	else:
+		turtle.write("scissor win", align="center", font=("Arial", 13, "italic", "bold"))
+		result = "scissor"
+	turtle.penup()
+	turtle.goto(0, -65)
+	turtle.pendown()
+	if result == choice_name:
+	    turtle.write("<== User wins ==>", align="center", font=("Arial", 13, "italic", "bold"))
+	else:
+	    turtle.write("<== Computer wins ==>", align="center", font=("Arial", 13, "italic", "bold"))
+
+button=Button(frame, text="Rock", fg="white", command=Rock, bg="black").grid(row=1, column=1,padx=5,pady=5)
+button=Button(frame, text="Paper", fg="white", command=Paper, bg="black").grid(row=1, column=2,padx=5,pady=5)
+button=Button(frame, text="Scissor", fg="white", command=Scissor, bg="black").grid(row=1, column=3,padx=5,pady=5)
+root.mainloop()
